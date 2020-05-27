@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>留言板  0826网  V0.1.45 一个佛系的网站_生活 日常 搞笑 娱乐 鸡汤</title>
+
+<link type="text/css" rel="styleSheet" href="css/bootstrap.min.css" />
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link type="text/css" rel="styleSheet" href="css/myCSS.css" />
+<script type="text/javascript" src="css/jquery-3.4.1.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--弹窗样式1-->
+<link rel="stylesheet" type="text/css" href="selfDefine/sweetalert/sweetalert.css">
+<script type="text/javascript" src="selfDefine/sweetalert/sweetalert-dev.js"></script>
+<!--弹窗样式2-->
+<link rel="stylesheet" type="text/css" href="selfDefine/alertCSS/css/xcConfirm.css">
+<!--<script type="text/javascript" src="selfDefine/alertCSS/js/jquery-1.9.1.js"></script>-->
+<script type="text/javascript" src="selfDefine/alertCSS/js/xcConfirm.js"></script>
+</head>
+<body>
+	<!-- -------------------头部------------------------------ -->
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<a> <img src="imgs/img.jpeg" align="right" width="55px"
+					 height="55px" class="img-circle">
+			</a>
+			<h4>Welcome honey!</h4>
+			<a href="/0826/myInfo" th:style="${session.iUser==null}?'display:none;':'font-size: medium'" th:text="${session.userName}">
+			</a>
+			<a href="/0826/logout" th:style="${session.iUser==null}?'display:none;':'font-size: medium'" th:text="${session.quitStr}">
+			</a>
+			<a href="/0826/login" th:style="${session.iUser==null}?'font-size: medium':'display:none'" th:text="我要登录哼">
+			</a>
+			<a href="/0826/re" th:style="${session.iUser==null}?'font-size: medium':'display:none'" th:text="让我加入鸭">
+			</a>
+		</div>
+		<script type="text/javascript" src="js/head_01.js"></script>
+		<!-- ------------------------------------------------------ -->
+	<!-- ----------------------------------------------------- -->
+		<form name="myForm" action="/0826/cc" onsubmit="return validateForm()" method="POST">
+			<div class="panel-body">
+				<textarea id="words" name="words" placeholder="留下你的脚印~ "
+					class="form-control" rows="3"></textarea>
+			</div>
+
+			<div class="panel-body text-primary">
+	                <label> 
+						<input type="radio" name="look" value="1" checked="selected" class="a-radio">
+						<span class="b-radio"></span>展示咯
+					</label> 
+					<label> 
+						<input type="radio" name="look" value="0" class="a-radio"> 
+						<span class="b-radio"></span>不让看
+					</label>
+			</div>
+			<button type="submit" oninput="check(this)" data-toggle="popover" title="略略略" style="margin: 0 0 0 20px" class="btn btn-info">踩<span class="glyphicon glyphicon-heart"></span>踩</button>
+			
+		</form>
+
+		<br>
+		<!-- ------------------------留言展示------------------------------ -->
+	<div class="panel-heading" >
+		<table class="table table-hover">
+			<div th:each="words : ${wordsList}">
+				<div class="jumbotron" style="text-align:center;height: 140px" >
+					<p style="font-size: medium;margin-top: -25px" th:text="${words.words}">
+					</p>
+					<!--href="#response" <div id="inputResponse">-->
+					<div id="wordsid" th:text="${words.wordsId}" style="display: none"></div>
+					<a data-toggle="collapse" class="btn btn-success"
+					   th:onclick="'javascript:responseSomeone(\''+${words.wordsId}+'\')'" style="font-size: smaller;margin-top: -5px">
+						回复TA<span class="glyphicon glyphicon-send"></span>
+					</a>
+					<div id="response" class="panel-collapse collapse">
+						<textarea name="response" placeholder="有什么想对ta说的呢~ "
+						  class="form-control" rows="1"></textarea>
+					</div>
+
+					<p style="color: #D83526;font-size: smaller;text-align: right" th:text="${words.userName}">
+					</p>
+					<p style="font-size: smaller;text-align: right;margin-top: -5px" th:text="${words.createDate}">
+					</p>
+				</div>
+			</div>
+		</table>
+		
+		<!-- -------------------------分页------------------------ -->
+		<nav aria-label="Page navigation" align=center>
+			<ul class="pagination">
+				<li><a href="/0826/sh?page=1" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+				</a></li>
+				<li><a href="/0826/sh?page=1">1</a></li>
+				<li><a href="/0826/sh?page=2">2</a></li>
+				<li><a href="/0826/sh?page=3">3</a></li>
+				<li><a href="/0826/sh?page=4">4</a></li>
+				<li><a href="/0826/sh?page=5">5</a></li>
+				<li><a href="/0826/sh?page=5" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				</a></li>
+			</ul>
+		</nav>
+
+		<!-- ----------------------------------------------------- -->
+	</div>
+	<!-- -------------------------------------------------------------- -->
+
+		<div class="panel panel-info">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" 
+                href="#collapseThree">
+                	点我点我
+                </a>
+            </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse">
+            <div class="panel-body">
+                	你是最帅的！！！
+            </div>
+        </div>
+    	</div>
+		<!-- ------------------------------------- -->
+	</div>
+<!-- ------------------------------------- -->
+	<!-- -----------------底部固定区域-------------------- -->
+	 <script type="text/javascript" src="js/foot_01.js"></script>
+
+<script>
+
+function responseSomeone(wordsId){
+	var txt=  "写这里";
+	var wordsId = wordsId;
+	window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.input,{
+		onOk:function(v){
+			// console.log(v);
+            $.ajax({
+                async: false,
+                url:'/0826/responseSomeone?v='+v+'&wordsid='+wordsId,
+                type: "POST",
+                dataType: "text",
+                contentType: "application/json",
+                data:{
+                },
+                success: function(args){
+                    if(args=="CONST_OK"){
+                    	window.location.reload();
+                    }else if(args=="CONST_NO_OK"){
+                    	//注册用户名不通过,变红
+                    	// $("#username").css("color","red");
+                    	// window.wxc.xcConfirm("用户名重复或不合法，重来一次哟", window.wxc.xcConfirm.typeEnum.info);
+                    	swal("亲亲","不能输入空的哦","warning");
+                    }
+                    // $("#username").html(args);
+                },
+                error: function (args) {
+                    swal("未知异常，请联系管理员");
+                }
+            });
+		}
+	});
+
+}
+
+$(function (){
+    $("[data-toggle='popover']").popover();
+});
+
+function validateForm() {
+    var x = document.forms["myForm"]["words"].value;
+    if (x == "") {
+        swal("不写不让留言哦！");
+        return false;
+    }
+}
+
+</script>
+
+</body>
+</html>

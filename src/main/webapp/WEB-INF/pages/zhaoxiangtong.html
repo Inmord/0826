@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+<title>找相同  0826网  V0.1.45 一个佛系的网站_生活 日常 搞笑 娱乐 鸡汤</title>
+
+<link type="text/css" rel="styleSheet" href="css/bootstrap.min.css" />
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<script type="text/javascript" src="css/bootstrap.min.js"></script>
+<script type="text/javascript" src="css/jquery-3.4.1.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<style>
+html, body {
+	padding: 0;
+	background: #00bff3;
+	margin: 0;
+}
+
+.page_mengceng {
+	position: fixed;
+	top: 0;
+	display: none;
+	z-index: 1000;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+
+.card_border {
+	width: 340px;
+	height: 340px;
+	margin: 0 auto;
+	margin-top: 100px;
+	font-size: 0;
+}
+
+.card {
+	height: 73px;
+	width: 73px;
+	cursor: pointer;
+	display: inline-block;
+	box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+	overflow: hidden;
+	border-radius: 10px;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.card_backImg {
+	position: relative;
+	z-index: 1;
+	height: 73px;
+	width: 73px;
+}
+
+.card_img {
+	position: absolute;
+	border-radius: 10px;
+	height: 73px;
+	width: 73px;
+}
+
+.card_IndexNum {
+	opacity: 0;
+	z-index: -1;
+	position: relative;
+}
+
+.card_backImg_active {
+	margin-top: -73px;
+	margin-left: -73px;
+	opacity: 0;
+	-webkit-animation: active 0.3s;
+}
+@-webkit-keyframes active { 0% {
+	margin-top: 0px;
+	margin-left: 0px;
+	opacity: 1;
+}
+100%
+{
+	margin-top:-73px;
+	margin-left:-73px;
+	opacity: 0;
+}
+}
+.card_backImg_Unactive {
+	margin-top: 0px;
+	margin-left: 0px;
+	opacity: 1;
+	-webkit-animation: unactive 0.3s;
+}
+@-webkit-keyframes unactive { 0% {
+	margin-top: -73px;
+	margin-left: -73px;
+	opacity: 0;
+}
+100%
+{
+margin-top:0px;
+margin-left:0px;
+opacity:1;
+}
+}
+</style>
+
+<body>
+	<!-- -------------------头部------------------------------ -->
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<a> <img src="imgs/img.jpeg" align="right" width="55px"
+					 height="55px" class="img-circle">
+			</a>
+			<h4>Welcome honey!</h4>
+			<a href="/0826/myInfo" th:style="${session.iUser==null}?'display:none;':'font-size: medium'" th:text="${session.userName}">
+			</a>
+			<a href="/0826/logout" th:style="${session.iUser==null}?'display:none;':'font-size: medium'" th:text="${session.quitStr}">
+			</a>
+			<a href="/0826/login" th:style="${session.iUser==null}?'font-size: medium':'display:none'" th:text="我要登录哼">
+			</a>
+			<a href="/0826/re" th:style="${session.iUser==null}?'font-size: medium':'display:none'" th:text="让我加入鸭">
+			</a>
+		</div>
+		<script type="text/javascript" src="js/head_01.js"></script>
+		<!-- ------------------------------------------------------ -->
+
+		<!-- ------------------------------------------------------ -->
+	</div>
+	<!-- -------------------小窝主体------------------------------ -->
+
+	<div class="page_mengceng"></div>
+	<div class="card_border"></div>
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript">
+	
+var ary=[0,1,2,3,4,5,6,7];
+
+ary.push(...ary);
+var num=ary.length;
+var time=ary.length;
+var DomAry=[]
+var dobleAry_index=[];
+var dobleAry_Num=[];
+
+(function(){
+    for(var j=0;j<time;j++){
+		var random=Math.floor(Math.random()*num);
+		 for(var i=0;i<ary.length;i++){
+		 if(random==i){
+		 DomAry.push(ary[i]);
+		 $(".card_border").append("<div class='card'><div class='card_IndexNum'>"+ary[i]+"</div><img src='images/modle"+ary[i]+".jpg' class='card_img'><img src='images/back1.jpg' class='card_backImg'></div>")
+		 ary.splice(i,1);
+		 num--
+		}
+	  }
+	}
+})()
+
+var el=document.getElementsByClassName("card_backImg");
+for(var i=0;i<el.length;i++){
+	var a=el[i];
+	a.index=i;
+	a.onclick=function() {
+		$(this).removeClass('card_backImg_Unactive');
+	    $(this).addClass('card_backImg_active');
+	    dobleAry_Num.push($(this).siblings(".card_IndexNum").html())
+	    dobleAry_index.push($(this).parent().index())
+	    if(dobleAry_index.length==2){
+	       if(dobleAry_Num[0]==dobleAry_Num[1]){
+		         dobleAry_Num.length=0
+			     dobleAry_index.length=0
+	       }else{
+	       	  $(".page_mengceng").show();
+	          setTimeout(function(){
+	              $(".page_mengceng").hide();
+	              $(".card").eq(dobleAry_index[0]).children(".card_backImg").addClass('card_backImg_Unactive')
+	              $(".card").eq(dobleAry_index[1]).children(".card_backImg").addClass('card_backImg_Unactive')
+			      dobleAry_Num.length=0
+				  dobleAry_index.length=0
+			  },500)
+	       }
+	    }
+	};
+}
+
+</script>
+
+	<!-- ------------------------------------------------------ -->
+
+	<!-- -----------------------底部---------------------------- -->
+
+	<!-- -----------------底部固定区域-------------------- -->
+	 <script type="text/javascript" src="js/foot_01.js"></script>
+<script>
+
+$(function (){
+    $("[data-toggle='popover']").popover();
+});
+
+</script>
+	<!-- ------------------------------------------------------ -->
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.CustomerDao">
+    <resultMap id="BaseResultMap" type="com.ssm.entity.Customer">
+        <id column="customer_id" property="customer_id" jdbcType="SMALLINT"/>
+        <id column="store_id" property="store_id" jdbcType="TINYINT"/>
+        <result column="first_name" property="first_name" jdbcType="VARCHAR"/>
+        <result column="last_name" property="last_name" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="address_id" property="address_id" jdbcType="SMALLINT"/>
+        <result column="active" property="active" jdbcType="TINYINT"/>
+        <result column="create_date" property="create_date" jdbcType="DATE"/>
+        <result column="last_update" property="last_update" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="login" resultMap="BaseResultMap">
+		select * from customer where first_name=#{name}
+	</select>
+
+
+</mapper>

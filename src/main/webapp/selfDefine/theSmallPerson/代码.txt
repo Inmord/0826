@@ -1,0 +1,45 @@
+<!-- www.yawzhou.cn -->
+<!--start浮动小人-->     
+<script type="text/javascript "> 
+<?php if(is_home()) echo 'var isindex=true;var title="";';else echo 'var isindex=false;var title="',  get_the_title(),'";'; ?> 
+<?php if((($display_name = wp_get_current_user()->display_name) != null)) echo 'var visitor="',$display_name,'";'; else if(isset($_COOKIE['comment_author_'.COOKIEHASH])) echo 'var visitor="',$_COOKIE['comment_author_'.COOKIEHASH],'";';else echo 'var visitor="游客";';echo "\n"; ?> 
+</script> 
+<script type="text/javascript" src="http://www.yawzhou.cn/spig.js"></script> 
+<style> 
+.spig {display:block;width:130px;height:170px;position:absolute;bottom: 300px;left:160px;z-index:9999;} 
+#message{color :#191919;border: 1px solid #c4c4c4;background:#ddd;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;min-height:1em;padding:5px;top:-45px;position:absolute;text-align:center;width:auto !important;z-index:10000;-moz-box-shadow:0 0 15px #eeeeee;-webkit-box-shadow:0 0 15px #eeeeee;border-color:#eeeeee;box-shadow:0 0 15px #eeeeee;outline:none;} 
+.mumu{width:130px;height:170px;cursor: move;background:url(http://www.yawzhou.cn/spig0.png) no-repeat;} 
+@media (max-width:560px){
+    .spig{display: none;}
+}
+</style> 
+<div id="spig" class="spig"> 
+    <div id="message">加载中……</div> 
+    <div id="mumu" class="mumu"></div> 
+</div> 
+<!--end浮动小人--> 
+<span class="hitokoto" id="hitokoto" style="display:none">Loading...</span> 
+   <div id="hjsbox" style="display:none"> 
+    </div> 
+	
+<!--导入一言API-->	
+<script> 
+        //初始化一言 
+        setTimeout("getkoto()",1000); 
+        //加载一言 
+        var t; 
+        function getkoto(){ 
+            var hjs = document.createElement('script'); 
+            hjs.setAttribute('id', 'hjs'); 
+            hjs.setAttribute('src', 'http://api.hitokoto.us/rand?uid=3221&encode=jsc&fun=echokoto'); 
+            document.getElementById("hjsbox").appendChild(hjs); 
+            t=setTimeout("getkoto()",2000); 
+        } 
+        //输出一言 
+        function echokoto(result){ 
+            var hc = eval(result); 
+            //$("#hitokoto").fadeTo(300,0); 
+            document.getElementById("hitokoto").innerHTML = hc.hitokoto; 
+            //$("#hitokoto").fadeTo(300,0.75); 
+        } 
+</script> 

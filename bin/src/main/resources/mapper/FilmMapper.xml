@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.FilmDao">
+
+    <resultMap id="ListFilm" type="com.ssm.entity.Film">
+        <id property="film_id" column="film_id" jdbcType="SMALLINT"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="release_year" column="release_year" jdbcType="DATE"/>
+        <result property="language_id" column="language_id" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <!-- <select id="findAllFilm" resultMap="">-->
+    <!--<select id="findAllFilm" resultMap="ListFilm">-->
+    <!--select film_id,description,title,release_year,language_id,name from film inner join language-->
+    <!--on film.id=language .userID-->
+    <!--</select>-->
+    <select id="find" resultMap="ListFilm">
+		select film_id,description,title,release_year,language_id from film
+	</select>
+
+    <!-- insert与主键 -->
+    <insert id="insertFilm" statementType="PREPARED"
+            keyProperty="film_id" useGeneratedKeys="true">
+		insert into film
+		(description,title,language_id) values
+		(#{description},#{title},#{language_id})
+	</insert>
+
+</mapper>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>时光影集  0826网  V0.1.45 一个佛系的网站_生活 日常 搞笑 娱乐 鸡汤</title>
+
+<link type="text/css" rel="styleSheet" href="css/bootstrap.min.css" />
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<script type="text/javascript" src="css/jquery-3.4.1.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!--Vue-->
+<script type="text/javascript" src="selfDefine/Vue/vue.js"></script>
+</head>
+<body>
+	<!-- -------------------头部------------------------------ -->
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<a> <img src="imgs/img.jpeg" align="right" width="55px"
+					 height="55px" class="img-circle">
+			</a>
+			<h4>Welcome honey!</h4>
+			<a href="/0826/myInfo" th:style="${session.iUser==null}?'display:none;':'font-size: medium'" th:text="${session.userName}">
+			</a>
+			<a href="/0826/logout" th:style="${session.iUser==null}?'display:none;':'font-size: medium'" th:text="${session.quitStr}">
+			</a>
+			<a href="/0826/login" th:style="${session.iUser==null}?'font-size: medium':'display:none'" th:text="我要登录哼">
+			</a>
+			<a href="/0826/re" th:style="${session.iUser==null}?'font-size: medium':'display:none'" th:text="让我加入鸭">
+			</a>
+		</div>
+		<script type="text/javascript" src="js/head_01.js"></script>
+		<!-- ------------------------------------------------------ -->
+
+		<!-- ------------------------------------- -->
+		<!--<div class="panel-body" align="center">-->
+			<!--<img src="imgs/sg_0001.jpg" width="800px" height="450px">-->
+		<!--</div>-->
+
+		<div id="mask">
+			<div style="align:center">
+				<!--图片-->
+				<div class="panel-body" align="center">
+					<img :src="imgArr[index]" alt="" style="width:700px;height:420px;">
+				</div>
+				<!--左箭头-->
+				<a href="javascript:void(0)" v-show="index!=0" @click="prev">
+					<img src="imgs/timePicture/prev.png" alt="上一张" style="height:40px;width:100px;margin-top:-250px;margin-left:180px;float:left">
+				</a>
+				<!--右箭头-->
+				<a href="javascript:void(0)" v-show="index<imgArr.length-1" @click="next">
+					<img src="imgs/timePicture/next.png" alt="下一张" style="height:40px;width:100px;margin-top:-250px;margin-right:180px;float:right">
+				</a>
+			</div>
+		</div>
+
+	</div>
+	<!-- ------------------------------------- -->
+	<!-- -----------------底部固定区域-------------------- -->
+	 <script type="text/javascript" src="js/foot_01.js"></script>
+<script>
+var app = new Vue({
+	el: "#mask",
+	data:{
+		imgArr: [
+			"imgs/timePicture/01.jpg",
+			"imgs/timePicture/02.jpg",
+			"imgs/timePicture/03.jpg",
+			"imgs/timePicture/04.jpg",
+			"imgs/timePicture/05.jpg",
+			"imgs/timePicture/06.jpg",
+			"imgs/timePicture/07.jpg",
+		],
+		index: 0
+	},
+	methods: {
+		prev: function(){
+			this.index--;
+		},
+		next: function(){
+			this.index++;
+		}
+	}
+});
+
+$(function (){
+    $("[data-toggle='popover']").popover();
+});
+
+</script>
+</body>
+</html>

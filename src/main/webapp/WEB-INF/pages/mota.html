@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>魔塔beta  0826网  V0.1.45 一个佛系的网站_生活 日常 搞笑 娱乐 鸡汤</title>
+
+<link type="text/css" rel="styleSheet" href="css/bootstrap.min.css" />
+<link rel="shortcut icon" href="images/favicon.con" type="image/x-icon" />
+<script type="text/javascript" src="css/bootstrap.min.js"></script>
+<script type="text/javascript" src="css/jquery-3.4.1.min.js"></script>
+<!--应用-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="mota/css/main.css"/>
+<link rel="stylesheet" href="mota/css/alertify.core.css"/>
+<link rel="stylesheet" href="mota/css/alertify.default.css"/>
+<script src="mota/js/lib/jquery-3.0.0.min.js"></script>
+<script src="mota/js/lib/alertify.min.js"></script>
+<script src="mota/js/loader.js"></script>
+<script src="mota/js/data.js"></script>
+<script src="mota/js/event.js"></script>
+<script src="mota/js/fight.js"></script>
+<script src="mota/js/role.js"></script>
+<script src="mota/js/graph.js"></script>
+<script src="mota/js/action.js"></script>
+<script src="mota/js/storage.js"></script>
+<script src="mota/js/main.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<!-- -------------------头部------------------------------ -->
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<a> <img src="imgs/img.jpeg" align="right" width="55px"
+					 height="55px" class="img-circle">
+			</a>
+			<h4>Welcome honey!</h4>
+			<a href="/0826/myInfo" th:style="${session.iUser==null}?'display:none;':'font-size: medium'" th:text="${session.userName}">
+			</a>
+			<a href="/0826/logout" th:style="${session.iUser==null}?'display:none;':'font-size: medium'" th:text="${session.quitStr}">
+			</a>
+			<a href="/0826/login" th:style="${session.iUser==null}?'font-size: medium':'display:none'" th:text="我要登录哼">
+			</a>
+			<a href="/0826/re" th:style="${session.iUser==null}?'font-size: medium':'display:none'" th:text="让我加入鸭">
+			</a>
+		</div>
+		<script type="text/javascript" src="js/head_01.js"></script>
+		<!-- ------------------------------------------------------ -->
+
+		<!-- ------------------------------------- -->
+		<div class="panel-body" align="center">
+			<center>
+				<canvas height="400px" width="670px" id="canvas">你的浏览器不支持canvas</canvas>
+			</center>
+		</div>
+		
+	</div>
+	<!-- -----------------底部固定区域-------------------- -->
+	 <script type="text/javascript" src="js/foot_01.js"></script>
+<script>
+
+$(function (){
+    $("[data-toggle='popover']").popover();
+});
+
+</script>
+</body>
+</html>

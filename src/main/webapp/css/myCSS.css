@@ -1,0 +1,60 @@
+/*body {*/
+	/*font-size: 18px;*/
+	/*line-height: 20px;*/
+/*}*/
+
+/*label {*/
+	/*margin: 10px;*/
+/*}*/
+
+.a-radio {
+	display: none;
+}
+
+.b-radio {
+	display: inline-block;
+	border: 1px solid #ccc;
+	width: 16px;
+	height: 16px;
+	border-radius: 2px;
+	vertical-align: middle;
+	margin-right: 5px;
+	position: relative;
+}
+
+.b-radio:before {
+	content: '';
+	font-size: 0;
+	width: 10px;
+	height: 10px;
+	background: rgb(143, 188, 238);
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -5px;
+	margin-top: -5px;
+	border-radius: 2px;
+	display: none;
+}
+
+.a-radio:checked ~.b-radio:before {
+	display: block;
+}
+
+.leader{
+	margin-top: 5px;
+}
+
+/** 鼠标样式 开始**/
+/** 普通指针样式**/
+body {
+	cursor: url(../selfDefine/theMouseCss/cursor_1.png), default;
+}
+/** 链接指针样式**/
+a:hover,textarea,submit,label,button,p{
+	cursor:url(../selfDefine/theMouseCss/cursor_2.png), pointer;
+}
+input{
+	cursor:url(../selfDefine/theMouseCss/cursor_5.png), pointer;
+}
+/** 鼠标样式 结束**/

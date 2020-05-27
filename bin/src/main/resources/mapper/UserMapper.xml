@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.UserDao">
+    <resultMap id="BaseResultMap" type="com.ssm.entity.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,address,phone
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <!-- insert与主键 -->
+    <insert id="insertUser" statementType="PREPARED"
+            keyProperty="id" useGeneratedKeys="true">
+		insert into user
+		(name,address,phone) values
+		(#{name},#{address},#{phone})
+	</insert>
+
+    <select id="findAllUser" resultType="com.ssm.entity.User">
+		select * from user
+	</select>
+
+    <delete id="deleteUser">
+        delete from user where id = #{id}
+    </delete>
+
+    <update id="updateUser">
+        UPDATE user
+        <trim prefix="SET" suffixOverrides="," suffix="WHERE id = #{id}" >
+            <if test="name != null and name != '' ">
+                name = #{name},
+            </if>
+            <if test="address != null and address != '' ">
+                address=#{address},
+            </if>
+            <if test="phone != null and phone != '' ">
+                phone=#{phone},
+            </if>
+        </trim>
+    </update>
+
+</mapper>

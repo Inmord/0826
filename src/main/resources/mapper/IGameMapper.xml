@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.IGameDao">
+
+	<select id="getFlowerValue" resultType="integer">
+		select VAL
+		from game_value_tbl
+		where GAMENAME = #{param1}
+	</select>
+
+	<select id="addFlowerValue">
+		update game_value_tbl
+		set VAL=#{param1}
+		where GAMENAME = #{param2}
+	</select>
+
+	<select id="selectUserName" resultType="com.ssm.entity.IGames">
+		select USERNAME
+		from game_tbl
+		where GAMENAME = #{param1}
+	</select>
+
+	<insert id="insertUserName">
+		insert into game_tbl(USERNAME,GAMENAME,CREATEDATE)
+		values (#{param1},#{param2},#{param3})
+	</insert>
+
+	<select id="selectVersion" resultType="String">
+		select VERSION
+		from game_tbl
+		where USERNAME = #{param1}
+		and GAMENAME = #{param2}
+	</select>
+
+	<update id="updateVersion">
+		update game_tbl
+		set VERSION = VERSION + 1
+		where USERNAME = #{param1}
+		and GAMENAME = #{param2}
+	</update>
+
+	<update id="setGameVersionZero">
+		update game_tbl
+		set VERSION = '0',UPDATEDATE = #{param2}
+		where  gameName = #{param1}
+	</update>
+
+</mapper>

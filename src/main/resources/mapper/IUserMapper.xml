@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.IUserDao">
+
+	<select id="selectUser" resultType="com.ssm.entity.IUser">
+		select *
+		from USER_TBL a
+		where USERNAME = #{param1}
+		and PASSWORD = #{param2}
+	</select>
+	
+	<insert id="insertUser" >
+		insert
+		into USER_TBL (USERNAME,PASSWORD)
+		values (#{param1},#{param2})
+	</insert>
+
+	<select id="selectUserCount" resultType="integer">
+		select
+		count(USERNAME)
+		from USER_TBL
+		where USERNAME = #{param}
+	</select>
+
+<!-- a.USERID, a.USERNAME, a.PASSWORD ,a.NICKNAME -->
+
+	<!--<resultMap id="ListFilm" type="com.ssm.entity.Film">-->
+		<!--<id property="film_id" column="film_id" jdbcType="SMALLINT"/>-->
+		<!--<result property="description" column="description" jdbcType="VARCHAR"/>-->
+		<!--<result property="title" column="title" jdbcType="VARCHAR"/>-->
+		<!--<result property="release_year" column="release_year" jdbcType="DATE"/>-->
+		<!--<result property="language_id" column="language_id" jdbcType="TINYINT"/>-->
+	<!--</resultMap>-->
+
+	<!-- <select id="findAllFilm" resultMap="">-->
+	<!--<select id="findAllFilm" resultMap="ListFilm">-->
+	<!--select film_id,description,title,release_year,language_id,name from film inner join language-->
+	<!--on film.id=language .userID-->
+	<!--</select>-->
+
+	<!--<select id="find" resultMap="ListFilm">-->
+		<!--select film_id,description,title,release_year,language_id from film-->
+	<!--</select>-->
+
+	<!-- insert与主键 -->
+	<!--<insert id="insertFilm" statementType="PREPARED"-->
+			<!--keyProperty="film_id" useGeneratedKeys="true">-->
+		<!--insert into film-->
+		<!--(description,title,language_id) values-->
+		<!--(#{description},#{title},#{language_id})-->
+	<!--</insert>-->
+
+	<!--<resultMap id="BaseResultMap" type="com.ssm.entity.Customer">-->
+		<!--<id column="customer_id" property="customer_id" jdbcType="SMALLINT"/>-->
+		<!--<id column="store_id" property="store_id" jdbcType="TINYINT"/>-->
+		<!--<result column="first_name" property="first_name" jdbcType="VARCHAR"/>-->
+		<!--<result column="last_name" property="last_name" jdbcType="VARCHAR"/>-->
+		<!--<result column="email" property="email" jdbcType="VARCHAR"/>-->
+		<!--<result column="address_id" property="address_id" jdbcType="SMALLINT"/>-->
+		<!--<result column="active" property="active" jdbcType="TINYINT"/>-->
+		<!--<result column="create_date" property="create_date" jdbcType="DATE"/>-->
+		<!--<result column="last_update" property="last_update" jdbcType="TIMESTAMP"/>-->
+	<!--</resultMap>-->
+
+	<!--<select id="login" resultMap="BaseResultMap">-->
+		<!--select * from customer where first_name=#{name}-->
+	<!--</select>-->
+
+
+	<!--<resultMap id="BaseResultMap" type="com.ssm.entity.User">-->
+		<!--<id column="id" property="id" jdbcType="INTEGER"/>-->
+		<!--<result column="name" property="name" jdbcType="VARCHAR"/>-->
+		<!--<result column="address" property="address" jdbcType="VARCHAR"/>-->
+		<!--<result column="phone" property="phone" jdbcType="VARCHAR"/>-->
+	<!--</resultMap>-->
+
+	<!--<sql id="Base_Column_List">-->
+        <!--id,name,address,phone-->
+    <!--</sql>-->
+
+	<!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">-->
+		<!--select-->
+		<!--<include refid="Base_Column_List"/>-->
+		<!--from user-->
+		<!--where id = #{id,jdbcType=INTEGER}-->
+	<!--</select>-->
+
+	<!-- insert与主键 -->
+	<!--<insert id="insertUser" statementType="PREPARED"-->
+			<!--keyProperty="id" useGeneratedKeys="true">-->
+		<!--insert into user-->
+		<!--(name,address,phone) values-->
+		<!--(#{name},#{address},#{phone})-->
+	<!--</insert>-->
+
+	<!--<select id="findAllUser" resultType="com.ssm.entity.User">-->
+		<!--select * from user-->
+	<!--</select>-->
+
+	<!--<delete id="deleteUser">-->
+        <!--delete from user where id = #{id}-->
+    <!--</delete>-->
+
+	<!--<update id="updateUser">-->
+		<!--UPDATE user-->
+		<!--<trim prefix="SET" suffixOverrides="," suffix="WHERE id = #{id}" >-->
+			<!--<if test="name != null and name != '' ">-->
+				<!--name = #{name},-->
+			<!--</if>-->
+			<!--<if test="address != null and address != '' ">-->
+				<!--address=#{address},-->
+			<!--</if>-->
+			<!--<if test="phone != null and phone != '' ">-->
+				<!--phone=#{phone},-->
+			<!--</if>-->
+		<!--</trim>-->
+	<!--</update>-->
+
+</mapper>

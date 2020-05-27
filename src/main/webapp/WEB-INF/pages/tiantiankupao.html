@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>天天裤跑  0826网  V0.1.45 一个佛系的网站_生活 日常 搞笑 娱乐 鸡汤</title>
+
+<link type="text/css" rel="styleSheet" href="css/bootstrap.min.css" />
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<script type="text/javascript" src="css/jquery-3.4.1.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="css/kandi.css" type="text/css" media="screen">
+
+</head>
+<body>
+	<!-- -------------------头部------------------------------ -->
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<a> <img src="imgs/img.jpeg" align="right" width="55px"
+					 height="55px" class="img-circle">
+			</a>
+			<h4>Welcome honey!</h4>
+			<a href="/0826/myInfo" th:style="${session.iUser==null}?'display:none;':'font-size: medium'" th:text="${session.userName}">
+			</a>
+			<a href="/0826/logout" th:style="${session.iUser==null}?'display:none;':'font-size: medium'" th:text="${session.quitStr}">
+			</a>
+			<a href="/0826/login" th:style="${session.iUser==null}?'font-size: medium':'display:none'" th:text="我要登录哼">
+			</a>
+			<a href="/0826/re" th:style="${session.iUser==null}?'font-size: medium':'display:none'" th:text="让我加入鸭">
+			</a>
+		</div>
+		<script type="text/javascript" src="js/head_01.js"></script>
+		<!-- ------------------------------------------------------ -->
+
+		<!-- ------------------------------------- -->
+		<div class="panel-body" align="center" style="margin: -20px 0 0 20px">
+			<h3>按空格键跳跃</h3>
+			<div class="wrapper" style="margin: 0 0 0 370px">
+
+				<canvas id="canvas" width="800" height="480" >
+  					<p>You're browser does not support the required functionality to play this game.</p>
+  					<p>Please update to a modern browser such as 
+						<a	href="www.google.com/chrome/‎">Google Chrome</a> to play.</p>
+				</canvas>
+				<div id="game-over"  class="panel-body">
+					<a href="javascript:void(0);" class="restart" id="restart">再试一次？</a>
+				</div>
+			</div>
+
+			<script type="text/javascript" src="js/kandi.js"></script>
+			
+		</div>
+	<!-- ------------------------------------- -->
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+	</div>
+	<!-- ------------------------------------- -->
+	<!-- -----------------底部固定区域-------------------- -->
+	 <script type="text/javascript" src="js/foot_01.js"></script>
+<script>
+
+$(function (){
+    $("[data-toggle='popover']").popover();
+});
+
+</script>
+</body>
+</html>

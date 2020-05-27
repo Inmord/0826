@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.IWordsDao">
+
+	<select id="insertWords">
+		insert
+		into WORDS_TBL(USERNAME,WORDS,IS_RESPONSE,LOOK,CREATEDATE)
+		values(#{param1},#{param2},#{param3},#{param4},#{param5})
+	</select>
+
+	<select id="insertResponseWords">
+		insert
+		into WORDS_RESPONSE_TBL(WORDSID,WORDS_R,USERNAME_NEW,CREATEDATE)
+		values (#{param1},#{param2},#{param3},#{param4})
+	</select>
+	
+	<select id="findAllWords" resultType="com.ssm.entity.IWords">
+		select USERNAME,WORDSID,WORDS,LOOK,CREATEDATE,UPDATEDATE
+		from words_tbl
+		where LOOK = '1'
+		<!--and IS_RESPONSE = '0'-->
+		order by WORDSID DESC
+	</select>
+
+	<select id="selectUserByWordsId" resultType="string">
+		select USERNAME
+		from words_tbl
+		where WORDSID = #{param1}
+	</select>
+
+	<select id="selectWordsCount" resultType="integer">
+		select count(0)
+		from words_tbl
+	</select>
+
+	<select id="findWordsByUser" resultType="com.ssm.entity.IWords">
+		select USERNAME,WORDSID,WORDS,LOOK,CREATEDATE,UPDATEDATE
+		from words_tbl
+		where USERNAME=#{param1}
+		order by WORDSID DESC
+	</select>
+
+	<delete id="deleteWordsById">
+		<!--delete -->
+	</delete>
+
+	<update id="updateWordsByUser">
+		<!--update-->
+	</update>
+	
+<!-- a.USERID, a.USERNAME, a.PASSWORD ,a.NICKNAME -->
+
+</mapper>

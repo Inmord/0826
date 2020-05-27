@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+<title>坦克坦克  0826网  V0.1.45 一个佛系的网站_生活 日常 搞笑 娱乐 鸡汤</title>
+
+<link type="text/css" rel="styleSheet" href="css/bootstrap.min.css" />
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<script type="text/javascript" src="css/bootstrap.min.js"></script>
+<script type="text/javascript" src="css/jquery-3.4.1.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="js/jquery.min.js"></script>
+<script src="js/Helper.js"></script>
+<script src="js/keyboard.js"></script>
+<script src="js/const.js"></script>
+<script src="js/level.js"></script>
+<script src="js/crackAnimation.js"></script>
+<script src="js/prop.js"></script>
+<script src="js/bullet.js"></script>
+<script src="js/tank.js"></script>
+<script src="js/num.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/map.js"></script>
+<script src="js/Collision.js"></script>
+<script src="js/stage.js"></script>
+<script src="js/tankmain.js"></script>
+<style type="text/css">
+#canvasDiv canvas {
+	position: absolute;
+}
+</style>
+
+</head>
+
+<body>
+
+	<!-- -------------------头部------------------------------ -->
+	<div class="panel panel-info">
+		<div class="panel-heading">
+
+			<a> <img src="imgs/img.jpeg" align="right" width="55px"
+				height="55px" class="img-circle">
+			</a>
+
+			<h4>Welcome honey!</h4>
+			<a href="/0826/login">我要登录哼</a> <a href="/0826/re">让我加入鸭</a>
+		</div>
+		<!-- ------------------------------------------------------ -->
+
+		<!-- -------------------------导航栏------------------------- -->
+
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<img class="img-rounded" src="imgs/logo_2.png" width="190px"
+						height="50px">
+				</div>
+				<div>
+					<ul class="nav navbar-nav" style="margin: 0 0 0 20px">
+						<li class="active"><a href="/0826">首页儿</a></li>
+						<li class="active"><a href="/0826/zj">足迹鸭</a></li>
+						<li class="active"><a href="/0826/sg">时光影集</a></li>
+						<!-- ------------------下拉导航------------- -->
+						<li class="dropdown"><a href="" class="dropdown-toggle"
+							data-toggle="dropdown">小窝窝<b class="caret"></b>
+						</a>
+							<ul class="dropdown-menu">
+								<li><a href="/0826/zxt">找相同哦</a></li>
+								<li><a href="/0826/llk">连连看看</a></li>
+								<li><a href="/0826/sj">来打鸭子</a></li>
+								<li class="divider"></li>
+								<li><a href="/0826/zhh">种花花</a></li>
+							</ul></li>
+						<!-- ------------------------------------- -->
+
+						<li class="active"><a href="/0826/sh">我要嗦发</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+	<!-- ------------------------------------------------------ -->
+
+	<!-- -------------------小窝主体------------------------------ -->
+
+	<h3 align="center">操作说明：玩家1：wasd上左下右，space射击；玩家2：方向键，enter射击。n下一关，p上一关。</h3>
+	<div class="container">
+		<div class="main clearfix">
+			<div id="canvasDiv">
+				<canvas id="wallCanvas"></canvas>
+				<canvas id="tankCanvas"></canvas>
+				<canvas id="grassCanvas"></canvas>
+				<canvas id="overCanvas"></canvas>
+				<canvas id="stageCanvas"></canvas>
+			</div>
+		</div>
+	</div>
+	<!-- /container -->
+	<div style="text-align: center;" align="center"></div>
+
+
+<!-- ------------------------------------------------------ -->
+	</div>
+<!-- -----------------------底部---------------------------- -->
+
+
+<div class="bootstrap-footer" align="center">
+	<!-- 底部固定区域 -->
+	Copyright © Author ® Aiker. All rights reserved.
+</div>
+
+<!-- ------------------------------------------------------ -->
+
+</body>
+</html>

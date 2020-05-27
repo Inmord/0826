@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+<title>注册  0826网  V0.1.45 一个佛系的网站_生活 日常 搞笑 娱乐 鸡汤</title>
+
+<link type="text/css" rel="styleSheet" href="css/bootstrap.min.css" />
+<link type="text/css" rel="styleSheet" href="css/myCSS.css" />
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+<script type="text/javascript" src="css/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="css/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!--弹窗样式1-->
+<link rel="stylesheet" type="text/css" href="selfDefine/sweetalert/sweetalert.css">
+<script type="text/javascript" src="selfDefine/sweetalert/sweetalert-dev.js"></script>
+<!--<link rel="stylesheet" type="text/css" href="selfDefine/alertCSS/css/xcConfirm.css">-->
+<!--<script type="text/javascript" src="selfDefine/alertCSS/js/jquery-1.9.1.js"></script>-->
+<!--<script type="text/javascript" src="selfDefine/alertCSS/js/xcConfirm.js"></script>-->
+</head>
+
+<body>
+	<!-- -------------------头部------------------------------ -->
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<a> <img src="imgs/img.jpeg" align="right" width="55px"
+					 height="55px" class="img-circle">
+			</a>
+			<h4>Welcome honey!</h4>
+			<a href="/0826/myInfo" th:style="${session.iUser==null}?'display:none;':'font-size: medium'" th:text="${session.userName}">
+			</a>
+			<a href="/0826/logout" th:style="${session.iUser==null}?'display:none;':'font-size: medium'" th:text="${session.quitStr}">
+			</a>
+			<a href="/0826/login" th:style="${session.iUser==null}?'font-size: medium':'display:none'" th:text="我要登录哼">
+			</a>
+			<a href="/0826/re" th:style="${session.iUser==null}?'font-size: medium':'display:none'" th:text="让我加入鸭">
+			</a>
+		</div>
+		<!-- -------------------------导航栏------------------------- -->
+
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="/0826"><img class="img-rounded" src="imgs/logo_2.png" width="190px"
+										 height="50px"></a>
+				</div>
+				<div>
+					<ul class="nav nav-pills" style="margin: 0 0 0 20px;">
+						<li class="leader"><a href="/0826">首页儿</a></li>
+						<li class="leader"><a href="/0826/zj">足迹鸭</a></li>
+						<li class="leader"><a href="/0826/sg">时光影集</a></li>
+						<!-- ------------------下拉导航------------- -->
+						<li class="dropdown" style="margin-top: 5px"><a class="dropdown-toggle"
+																		data-toggle="dropdown" title="记得把声音调小哦">小窝窝<b class="caret"></b>
+						</a>
+							<ul class="dropdown-menu">
+								<li><a href="/0826/zxt">找相同哦</a></li>
+								<li><a href="/0826/llk">连连看看</a></li>
+								<li><a href="/0826/zz">蜘蛛纸牌</a></li>
+								<li><a href="/0826/ppl">泡泡龙 </a></li>
+								<li><a href="/0826/sj">来打鸭子</a></li>
+								<li class="divider"></li>
+								<li><a href="/0826/zhh">种花花</a></li>
+							</ul></li>
+						<!-- ------------------------------------- -->
+
+						<li class="leader"><a href="/0826/happy">内涵段子</a></li>
+						<li class="leader"><a href="/0826/sh">我要嗦发</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- ------------------------------------- -->
+
+
+		<!-- -------------------小窝主体------------------------------ -->
+		<!--action="/0826/join"-->
+		<div class="form-horizontal">
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">昵称</label>
+				<div class="col-sm-3">
+					<input type="text" id="username" name="userName" class="form-control"
+						placeholder="Username">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+				<div class="col-sm-3">
+					<input type="password" name="passWord" class="form-control"
+						id="inputPassword3" placeholder="Password">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-3">
+					<div class="checkbox">
+						<label> <input type="checkbox"> 我是最帅的
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-3">
+					<button  onclick="registerUser()" class="btn btn-warning">立刻！马上!<span class="glyphicon glyphicon-check"></span></button>
+				</div>
+			</div>
+		</div>
+		<!--type="submit"-->
+		<!-- ------------------------------------------------------ -->
+	</div>
+	<!-- -----------------------底部---------------------------- -->
+
+
+	<!-- -----------------底部固定区域-------------------- -->
+	 <script type="text/javascript" src="js/foot_01.js"></script>
+
+	<!-- ------------------------------------------------------ -->
+<script>
+
+$(function (){
+    $("[data-toggle='popover']").popover();
+});
+
+var username = "";
+var password = "";
+
+function registerUser() {
+	username = $("#username").val();
+	password = $("#inputPassword3").val();
+	$.ajax({
+		async: false,
+		url:'/0826/join?username='+username+'&password='+password,
+		type: "POST",
+		dataType: "text",
+		contentType: "application/json",
+		data:{"userInfo":[$("#username").val(),
+				$("#inputPassword3").val()
+			]
+		},
+		success: function(args){
+			if(args=="CONST_OK"){
+				swal("注册好了哦亲亲","快去登录叭","success");
+			}else if(args=="CONST_NO_OK"){
+				//注册用户名不通过,变红
+				// $("#username").css("color","red");
+				// window.wxc.xcConfirm("用户名重复或不合法，重来一次哟", window.wxc.xcConfirm.typeEnum.info);
+				swal("用户名或密码重复、不合法","重来一次哟","warning");
+			}
+			// $("#username").html(args);
+		},
+		error: function (args) {
+			swal("未知异常，请联系管理员")
+		}
+	});
+}
+
+function checkUserName(){
+	$.post({
+		url:"/0826/isExist",
+		data:{"userInfo":$("#userName").val()},
+		success:function(data){
+			if(data.toString()=='ok'){
+				//注册用户名通过,变绿
+				$('#userInfo').css("color","green");
+				window.alert("注册成功！");
+			}else{
+				//注册用户名不通过,变红
+				$('#userInfo').css("color","red");
+				alert(data.toString());
+			}
+			$("#userInfo").html(data);
+		}
+	})
+}
+
+</script>
+</body>
+</html>

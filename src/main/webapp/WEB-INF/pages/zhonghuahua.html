@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>种花花  0826网  V0.1.45 一个佛系的网站_生活 日常 搞笑 娱乐 鸡汤</title>
+
+<link type="text/css" rel="styleSheet" href="css/bootstrap.min.css" />
+<link rel="shortcut icon" href="images/favicon.con" type="image/x-icon" />
+<script type="text/javascript" src="css/jquery-3.4.1.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--弹窗样式1-->
+<link rel="stylesheet" type="text/css" href="selfDefine/sweetalert/sweetalert.css">
+<script type="text/javascript" src="selfDefine/sweetalert/sweetalert-dev.js"></script>
+<!--引入Vue-->
+<script type="text/javascript" src="selfDefine/Vue/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+	<!-- -------------------头部------------------------------ -->
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<a> <img src="imgs/img.jpeg" align="right" width="55px"
+					 height="55px" class="img-circle">
+			</a>
+			<h4>Welcome honey!</h4>
+			<a href="/0826/myInfo" th:style="${session.iUser==null}?'display:none;':'font-size: medium'" th:text="${session.userName}">
+			</a>
+			<a href="/0826/logout" th:style="${session.iUser==null}?'display:none;':'font-size: medium'" th:text="${session.quitStr}">
+			</a>
+			<a href="/0826/login" th:style="${session.iUser==null}?'font-size: medium':'display:none'" th:text="我要登录哼">
+			</a>
+			<a href="/0826/re" th:style="${session.iUser==null}?'font-size: medium':'display:none'" th:text="让我加入鸭">
+			</a>
+		</div>
+		<script type="text/javascript" src="js/head_01.js"></script>
+		<!-- ------------------------------------------------------ -->
+
+		<!-- ------------------------------------- -->
+		<div class="panel-body" align="center" id="flower">
+			<img :src="flowerArr[index]">
+			<br>
+			<input type="button" class="btn btn-success" value="浇水水" @click="grow">
+			<input type="button" class="btn btn-warning" value="放虫虫" @click="putInsect">
+			<!--<img src="imgs/zhh/zhh_0001.jpeg" width="365px" height="238px">-->
+			<strong><h3>当前成长值:{{ growthValue }}</h3></strong>
+			<!--v-bind="growthValue"-->
+
+			<!--<label class="pl-10">-->
+				<!--<input type="radio" value="1" name="iptype"  disabled="disabled" >-->
+				<!--独立IP-->
+			<!--</label>-->
+			<!--<a class="pos-r" href="" target="_blank">-->
+				<!--<span class="icon-question"></span>-->
+				<!--<div class="manager-tip" style=" top: 30px;left: -16px; width: 264px; z-index: 99;">-->
+					<!--独立IP更利于搜索引擎优化，提高SEO权限，避免受其他网站的干扰和影响，一键支持ssl证书部署，强烈推荐！-->
+					<!--<i></i>-->
+				<!--</div>-->
+			<!--</a>-->
+
+		</div>
+		
+	</div>
+	<!-- -----------------底部固定区域-------------------- -->
+	 <script type="text/javascript" src="js/foot_01.js"></script>
+<script>
+
+//与后端交互版本
+var app = new Vue ({
+	el: "#flower",
+	data: {
+		growthValue : "",
+		flowerArr: [
+				"imgs/zhh/zhh_0001.jpeg",
+				"imgs/zhh/zhh_0002.gif",
+				"imgs/zhh/zhh_0003.gif",
+				"imgs/zhh/zhh_0004.jpg",
+		],
+		index: 0,
+	},
+	mounted: function(){
+		this.getFlowerValue();
+	},
+	methods: {
+		grow: function () {
+			var that = this;
+			axios.get("/0826/addFlowerValue?growthValue="+this.growthValue)
+					.then(function (response) {
+						if (response.data.code == "403"){
+							swal("花花再浇水就淹④啦");
+						}else if(response.data.code == "200"){
+							that.getFlowerValue();
+						}
+					}
+					,function (err) {
+							swal("未知异常呢");
+					});
+		},
+		getFlowerValue: function(){
+			var that = this;
+			axios.get("/0826/getFlowerValue").then(function (response) {
+				// console.log(response);
+				that.growthValue = response.data.data[0];
+				that.index = response.data.data[1];
+			},function (err) {
+				swal("未知异常呢");
+			});
+		},
+		putInsect: function () {
+			// if (this.growthValue != 0){
+			// 	this.growthValue = this.growthValue-10;
+			// }else {
+			// 	swal("别再放虫虫啦，花花要被啃掉辽");
+			// }
+			swal("本仙草花花是虫虫是吃不掉的哦");
+		}
+	}
+});
+
+// var app = new Vue ({
+// 	el: "#flower",
+// 	data: {
+// 		growthValue : 10
+// 	},
+// 	methods: {
+// 		grow: function () {
+// 			this.growthValue = this.growthValue+10;
+// 		},
+// 		putInsect: function () {
+// 			if (this.growthValue != 0){
+// 				this.growthValue = this.growthValue-10;
+// 			}else {
+// 				swal("别再放虫虫啦，花花要被啃掉辽");
+// 			}
+// 		}
+// 	}
+// })
+
+$(function (){
+    $("[data-toggle='popover']").popover();
+});
+
+</script>
+</body>
+</html>

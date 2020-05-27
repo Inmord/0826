@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>你的♥里 0826网 V0.1.45 一个佛系的网站_生活 日常 搞笑 娱乐 鸡汤 心情</title>
+
+<link type="text/css" rel="styleSheet" href="css/bootstrap.min.css" />
+<link type="text/css" rel="styleSheet" href="css/myCSS.css" />
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<script type="text/javascript" src="css/jquery-3.4.1.min.js"></script>
+
+<link rel="styles/cdn.staticfiheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+<!-- -------------------头部------------------------------ -->
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<a> <img src="imgs/img.jpeg" align="right" width="55px"
+				 height="55px" class="img-circle">
+		</a>
+		<h4>Welcome honey!</h4>
+		<a href="/0826/myInfo" th:style="${session.iUser==null}?'display:none;':'font-size: medium'" th:text="${session.userName}">
+		</a>
+		<a href="/0826/logout" th:style="${session.iUser==null}?'display:none;':'font-size: medium'" th:text="${session.quitStr}">
+		</a>
+		<a href="/0826/login" th:style="${session.iUser==null}?'font-size: medium':'display:none'" th:text="我要登录哼">
+		</a>
+		<a href="/0826/re" th:style="${session.iUser==null}?'font-size: medium':'display:none'" th:text="让我加入鸭">
+		</a>
+	</div>
+	<!-- -------------------------导航栏------------------------- -->
+
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="/0826"><img class="img-rounded" src="imgs/logo_2.png" width="190px"
+									 height="50px"></a>
+			</div>
+			<div>
+				<ul class="nav nav-pills" style="margin: 0 0 0 20px;">
+					<li class="leader"><a href="/0826">首页儿</a></li>
+					<li class="leader"><a href="/0826/zj">足迹鸭</a></li>
+					<li class="leader"><a href="/0826/sg">时光影集</a></li>
+					<!-- ------------------下拉导航------------- -->
+					<li class="dropdown" style="margin-top: 5px"><a class="dropdown-toggle"
+																	data-toggle="dropdown" title="记得把声音调小哦">小窝窝<b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="/0826/zxt">找相同哦</a></li>
+							<li><a href="/0826/llk">连连看看</a></li>
+							<li><a href="/0826/zz">蜘蛛纸牌</a></li>
+							<li><a href="/0826/ppl">泡泡龙 </a></li>
+							<li><a href="/0826/sj">来打鸭子</a></li>
+							<li class="divider"></li>
+							<li><a href="/0826/zhh">种花花</a></li>
+						</ul></li>
+					<!-- ------------------------------------- -->
+
+					<li class="leader"><a href="/0826/happy">内涵段子</a></li>
+					<li class="leader"><a href="/0826/sh">我要嗦发</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- ------------------------------------- -->
+	<div class="panel-body">
+
+		<!-- -------------------------------------
+            <p class="lead">
+            <pre>
+                写在前面：
+                    这里是0826小窝哦，欢迎光临！
+            </pre>
+            </p>
+            -->
+		<pre>
+		你最帅！
+		</pre>
+	</div>
+</div>
+<!-- -----------------底部固定区域-------------------- -->
+<script type="text/javascript" src="js/foot_01.js"></script>
+
+</body>
+</html>

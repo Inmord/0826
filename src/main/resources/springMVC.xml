@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:task="http://www.springframework.org/schema/task"
+	   xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+	<mvc:annotation-driven />
+
+	<context:component-scan base-package="com.ssm.controller" />
+
+	<!-- 任务调度器 -->
+	<task:scheduler id="scheduler" pool-size="10" />
+	<!--开启注解调度支持 @Scheduled-->
+	<task:annotation-driven executor="scheduler" proxy-target-class="true"/>
+
+	<mvc:default-servlet-handler />
+	<!-- jsp 视图解析器 -->
+	 <!--<bean id="jspViewResolver"-->
+		<!--class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+		<!--<property name="viewClass"-->
+			<!--value="org.springframework.web.servlet.view.JstlView" />-->
+		<!--<property name="prefix" value="/WEB-INF/pages/" />-->
+		<!--<property name="suffix" value=".jsp" />-->
+	<!--</bean>-->
+	<!-- html 视图解析器 -->
+	<!--<bean id="htmlViewResolver"-->
+		  <!--class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+		<!--<property name="viewClass"-->
+				  <!--value="org.springframework.web.servlet.view.JstlView" />-->
+		<!--<property name="prefix" value="/WEB-INF/pages/" />-->
+		<!--<property name="suffix" value=".html" />-->
+	<!--</bean>-->
+
+	<!-- thymeleaf的视图解析器 会与冲突ContentNegotiatingViewResolver-->
+	<bean id="viewResolver" class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+	<property name="characterEncoding" value="UTF-8"/>
+	<property name="templateEngine" ref="templateEngine"/>
+	</bean>
+	<!--模板引擎-->
+	<bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+	<property name="templateResolver" ref="templateResolver"/>
+	</bean>
+	<!--模板解析器-->
+	<bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+	<constructor-arg ref="servletContext"/>
+	<property name="prefix" value="/WEB-INF/pages/"/>
+	<property name="suffix" value=".html"/>
+	<property name="templateMode" value="HTML5"/>
+	<property name="cacheable" value="false"/>
+	<property name="characterEncoding" value="UTF-8"/>
+
+	</bean>
+
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*"/>
+			<bean class="com.ssm.filter.LoginInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<!--<mvc:interceptors>-->
+		<!--<mvc:interceptor>-->
+			<!--<mvc:mapping path="/*"/>-->
+			<!--<bean class="com.ssm.filter.GetSessionInterceptor"/>-->
+		<!--</mvc:interceptor>-->
+	<!--</mvc:interceptors>-->
+
+</beans>
